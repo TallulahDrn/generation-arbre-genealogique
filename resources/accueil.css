@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    background-color: #c90606;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.mini-game-text {
+    background-color: transparent;
+    color: white;
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.help-button {
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 25px;
+
+}
+
+
+.chart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 80%;
+    height: 400px; 
+    margin-top: 100px; 
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    justify-content: flex-end;
+}
+
+.bar-fill {
+    background-color: #c90606;
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    transition: height 0.5s ease;
+    height: 0;
+}
+
+.bar-fill::before {
+    content: attr(data-value);
+    position: absolute;
+    top: -20px;
+    font-weight: bold;
+}
+
+.bar-label {
+    margin-top: 5px; /* Espacement entre la barre et le texte */
+    font-weight: bold;
+    text-align: center; /* Centrer le texte horizontalement */
+    color: #333; /* Couleur du texte */
+    font-size: 14px; /* Taille de la police */
+}
+
