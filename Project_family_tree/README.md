@@ -1,5 +1,3 @@
-Ce fichier README a été généré le 2024/06/19 par Mathis Chartier.
-
 Dernière mise-à-jour le : 2024/06/19.
 
 # INFORMATIONS GENERALES
