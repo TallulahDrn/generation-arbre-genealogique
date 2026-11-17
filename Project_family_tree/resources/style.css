@@ -1,0 +1,241 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    background-color: #c90606;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.mini-game-text {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-left: 25px;
+}
+
+.help-button {
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 25px;
+}
+
+.tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0; /* Augmentation de l'espacement vertical */
+    position: relative;
+    width: 100%;
+}
+
+
+.node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    position: relative;
+}
+
+.node img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+.info {
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.parent {
+    margin-bottom: 20px;
+    position: relative;
+}
+.parent::after {
+    content: '';
+    width: 2px;
+    height: 30px;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    /*transform: translateX(-50%);*/
+}
+
+.row.children img{
+    margin: 15px;
+}
+
+.row.children::before {
+    content: '';
+    width: 27%; /* Largeur ajustée selon votre besoin */
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: -30px; /* Décalage vers le haut pour positionner juste au-dessus des lignes verticales */
+    left: 37%;
+}
+
+
+
+
+
+.row.children .node::before {
+    content: '';
+    width: 2px;
+    height: 30px;
+    background-color: black;
+    position: absolute;
+    top: -30px;
+    left: 53%;
+    /*transform: translateX(-50%);*/
+}
+
+.row.grandchildren {
+    position: relative;
+    margin: 5%;
+}
+.row.grandchildren img{
+    margin: 15px;
+}
+
+
+
+.row.grandchildren::before,
+.row.grandchildren::after {
+    content: '';
+    width: 27.5%; /* Chaque moitié prend 40% de la largeur */
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: -30px; /* Positionnée juste au-dessus des lignes verticales */
+    z-index: 1; /* Pour être au-dessus des lignes verticales */
+}
+
+.row.grandchildren::before {
+    left: 11%; /* Commence à 10% du côté gauche */
+}
+
+.row.grandchildren::after {
+    right: 13%; /* Commence à 10% du côté droit */
+}
+
+
+
+.row.grandchildren .node::before{
+    content: '';
+    width: 2px;
+    height: 30px;
+    background-color: black;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.info-Inconnu{
+    display: none ;
+}
+
+.disa{
+    display : none;
+}
+
+
+/* ---------------------------------MODAL----------------------------------*/
+/* Modale */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000000c7;
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Agrandir la largeur */
+    height: 500px; /* Ajuster la hauteur */
+    max-height: 100%; /* Agrandir la hauteur maximale, sans dépasser 80% de l'écran */
+    text-align: center;
+    z-index: 500;
+    position: relative;
+}
+
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal.show {
+    display: block;
+}
+
+/*--------------------------------------------------*/
+.mini-game-text{
+    cursor: pointer;
+}
