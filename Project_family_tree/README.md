@@ -1,28 +1,55 @@
-Dernière mise-à-jour le : 2024/06/19.
+# Project Family Tree : code source
 
-# INFORMATIONS GENERALES
+Ce dossier contient le code source du projet d'arbre généalogique en C (projet de groupe CIR1, ISEN, juin 2024).
 
-## Titre du jeu de données :
+*README rédigé initialement par Mathis Chartier le 19/06/2024, puis remis en forme.*
 
+## Présentation
 
-# INFORMATIONS METHODOLOGIQUES
+Le programme lit une base de données de personnes au format CSV. Pour chaque personne, il reconstruit les liens familiaux (parents et grands-parents) puis génère des pages HTML qui permettent de naviguer dans l'arbre généalogique.
 
-## Description des sources et méthodes utilisées pour collecter et générer les données :
+## Données d'entrée
 
-On utilise un trie pour enregirter nos differente region ainsi qu'une matrice pour garder en memoire les dates d'anniversaire de toute les personnes de la base de donnee.
-Puis pour stoker les individues nous avons une liste chainee et d'autre pointeur pour gardder les lien entre les differente personne.
+Deux bases de données sont fournies dans `resources/` :
 
+| Fichier | Contenu |
+|---|---|
+| `bd_petite.csv` | 40 personnes, pour les tests |
+| `bd_grande.csv` | environ 10 000 personnes |
 
-## Autres informations contextuelles :
+Chaque ligne a le format suivant :
 
-Pour lancer notre programme il suffit de lancer le main.c et de suivre les instructions ecrite dans la console. Pour recuperer les fichiers HTML cree il suffit de les recuperer dans le dossier export.
+```
+id, id du père, id de la mère, nom, prénom, date de naissance, région
+```
 
-# APERCU DES DONNEES ET FICHIERS
+Un identifiant de parent égal à `0` signifie que le parent est inconnu.
 
+## Méthodes et structures de données
 
-## Arborescence/plan de classement des fichiers :
+- **Liste chaînée** : stocke toutes les personnes. Chaque cellule pointe vers une personne, qui garde elle-même des pointeurs vers son père et sa mère.
+- **Trie** (arbre préfixe) : enregistre les régions de naissance lettre par lettre et compte le nombre de naissances par région.
+- **Matrice** : garde en mémoire les dates d'anniversaire (jour et mois) de toutes les personnes, pour répondre rapidement aux requêtes par date.
 
-struct Person est la base de notre projet, la où les donnee sont principalement enregister. 
-struct FamilyTree est une cellule de notre liste chaine.
-struct Resau est independante par rapport au autre.
-struct Together lie le tout.
+## Organisation des fichiers
+
+| Fichier | Rôle |
+|---|---|
+| `main.c` | Menu principal en console |
+| `Person.c / .h` | `struct Person` : la base du projet, où sont stockées les données de chaque personne (identité, date et région de naissance, liens vers les parents) |
+| `Familytree.c / .h` | `struct FamilyTree` : une cellule de la liste chaînée |
+| `Region.c / .h` | `struct Region` : le trie des régions, indépendant des autres structures |
+| `Together.c / .h` | `struct Together` : regroupe le tout (liste des personnes, régions, plus jeune et plus âgé…) |
+| `export.c / .h` | Génération des fichiers HTML |
+| `resources/` | Feuilles de style, scripts JavaScript, icônes et bases CSV |
+| `export/` | Dossier où sont créées les pages HTML |
+
+## Utilisation
+
+1. Lancer `main.c` (le projet a été développé sous CLion).
+2. Choisir la base à lire : petite ou grande.
+3. Choisir une action dans le menu :
+   - afficher des informations sur l'arbre ;
+   - exporter les pages HTML des arbres, la page d'accueil, ou tout à la fois ;
+   - interroger l'arbre : premier et dernier né, naissances par région, région avec le plus de naissances, naissances à une date donnée.
+4. Ouvrir les fichiers HTML générés dans le dossier `export/`.
