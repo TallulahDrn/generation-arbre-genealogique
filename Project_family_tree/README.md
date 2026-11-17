@@ -2,7 +2,6 @@
 
 Ce dossier contient le code source du projet d'arbre généalogique en C (projet de groupe CIR1, ISEN, juin 2024).
 
-*README rédigé initialement par Mathis Chartier le 19/06/2024, puis remis en forme.*
 
 ## Présentation
 
